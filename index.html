@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wax to Silver</title>
-<meta name="description" content="Four ways to start silver casting in Vietnam, with real start-up costs.">
+<meta name="description" content="Six ways to start silver casting in Vietnam, with real start-up costs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -93,9 +93,16 @@ input.sr:focus-visible + .switch{outline:2px solid var(--wax);outline-offset:3px
 .tag{font-size:14px;padding:3px 10px;border-radius:999px;background:var(--wax-soft);color:var(--wax)}
 .tag.warn{background:var(--hot-soft);color:var(--hot)}
 .items{list-style:none;padding:0;margin:24px 0 0}
-.items li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--line)}
-.items li.off{color:var(--muted);text-decoration:line-through}
-.items .p{white-space:nowrap;font-variant-numeric:tabular-nums}
+.items li{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:11px 0;border-top:1px solid var(--line)}
+.items li.off .en,.items li.off .p{color:var(--muted);text-decoration:line-through}
+.items .p{white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+.items .vn{display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:0;border:0;background:none;color:var(--muted);font-size:14px;cursor:copy;text-align:left}
+.items .vn:hover{color:var(--wax)}
+.items .vn.done{color:var(--wax)}
+.items .vn svg{width:13px;height:13px;flex:none;opacity:.7}
+.items .src{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.items .src:hover{color:var(--wax)}
+.items .goto{background:none;border:0;padding:0;color:var(--wax);font-size:13px;cursor:pointer;text-decoration:underline;margin-top:2px}
 .total-box{align-self:start;position:sticky;top:20px}
 .total-label{color:var(--muted);font-size:15px}
 .total{font-size:clamp(40px,6vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:6px 0 4px}
@@ -128,7 +135,7 @@ footer a{color:inherit}
 
 <header>
   <h1>Wax to silver</h1>
-  <p class="lede">Four ways to start casting silver jewelry in Vietnam, and what each costs to set up.</p>
+  <p class="lede">Six ways to start casting silver jewelry in Vietnam, and what each costs to set up.</p>
   <div class="bars" id="bars" aria-label="Start-up cost by route"></div>
 </header>
 
@@ -196,35 +203,84 @@ footer a{color:inherit}
 </section>
 
 <footer>
-  <p>Prices from Shopee and HCMC jewelry-tool shops, October 2026. Silver itself, flux, pickle and safety gear are not included. 925 silver ≈ 52,600₫/g.</p>
-  <p>Sources: <a href="https://giabac.ancarat.com/">Ancarat</a>, <a href="https://sonxitools.com/">Sonxi</a>, <a href="https://dungcuthobacngochoang.com/cong-nghe-duc">Ngọc Hoàng</a>, <a href="https://glosbejewelry.net/chuyen-gia-cong-trang-suc-bac-gia-re">Glosbe &amp; Co</a>, <a href="https://shopee.vn/">Shopee</a>.</p>
+  <p>Prices checked 22/10/2026 on Shopee and HCMC jewelry-tool shops; each item links to its listing. Silver, flux, pickle and safety gear are not included. 925 silver ≈ 52,600₫/g.</p>
+  <p>Sources: <a href="https://giabac.ancarat.com/">Ancarat</a>, <a href="https://sonxitools.com/">Sonxi</a>, <a href="https://dungcuthobacngochoang.com/cong-nghe-duc">Ngọc Hoàng</a>, <a href="https://glosbejewelry.net/chuyen-gia-cong-trang-suc-bac-gia-re">Glosbe &amp; Co</a>.</p>
 </footer>
 </main>
 
 <script>
-const TORCH = 213000;
+const SP = id => "https://shopee.vn/product/" + id;
+const SONXI = {
+  flask: "https://sonxitools.com/san-pham/lap-inox-duc-kim-hoan-d60-127.html",
+  invest: "https://sonxitools.com/san-pham/thach-cao-duc-vang-bac-75.html",
+  kiln: "https://sonxitools.com/san-pham/lo-nung-thach-cao-82.html"
+};
+const T = {
+  torch:   { en:"Butane torch", vn:"đầu khò gas mini", p:213000, url:SP("515776885/42175488536"), src:"Shopee", own:"torch" },
+  crucible:{ en:"Crucible + tongs", vn:"bộ nồi nấu chảy vàng bạc", p:207900, url:SP("1618699652/42835136018"), src:"Shopee", own:"crucible" },
+  brick:   { en:"Fire brick", vn:"gạch hàn chịu nhiệt", p:80000, url:SP("447830819/24789267447"), src:"Shopee", own:"brick" },
+  file:    { en:"Steel file", vn:"dũa sắt tam giác thợ bạc", p:57000, url:SP("967625199/19993470025"), src:"Shopee" },
+  knives:  { en:"Small carving set", vn:"bộ dao khắc", p:36000, url:SP("240876060/41123207530"), src:"Shopee" },
+  waxpen:  { en:"Electric wax pen", vn:"bút hàn sáp", p:185582, url:SP("492774456/19780086629"), src:"Shopee" },
+  flasks:  { en:"Steel flasks × 2", vn:"láp inox đúc", p:700000, url:SONXI.flask, src:"Sonxi" },
+  invest:  { en:"Investment plaster", vn:"thạch cao đúc vàng bạc", p:435000, url:SONXI.invest, src:"Sonxi" }
+};
+const WAX_KIT = [
+  { en:"Carving wax block", vn:"sáp khắc trang sức", p:69018, url:SP("348253305/29120869800"), src:"Shopee" },
+  { en:"Wax carving tools", vn:"bộ dụng cụ khắc sáp", p:256502, url:SP("1120604178/43326922547"), src:"Shopee" },
+  T.file,
+  { en:"Saw frame", vn:"cán cưa chữ U thợ bạc", p:155000, url:SP("60891586/29662907832"), src:"Shopee" },
+  { en:"Saw blades × 12", vn:"lưỡi cưa thợ bạc", p:49000, url:SP("60891586/27167975756"), src:"Shopee" }
+];
+const waxKitLine = { en:"Wax carving kit", vn:"bộ dụng cụ khắc sáp", p:WAX_KIT.reduce((s,i)=>s+i.p,0), goto:"B" };
+const MELT = [T.torch, T.crucible, T.brick];
+
 const routes = [
   { id:"A", name:"Cuttlefish bone", hot:false,
-    desc:"Carve the shape straight into a cuttlebone and pour silver in. No wax, no kiln.",
-    tags:[["Textured one-offs"],["Under 1M₫"],["Low detail","warn"]],
-    items:[["Cuttlefish bones × 5",87500],["Small carving set",29900],["Butane torch",TORCH,"torch"],["Crucible, tongs, ingot mold",269500],["Fire bricks × 10",285000]],
+    desc:"Carve the shape straight into a cuttlebone and pour silver in.",
+    tags:[["Textured one-offs"],["No kiln"],["Low detail","warn"]],
+    items:[{ en:"Cuttlefish bones × 5", vn:"mai mực (nang mực)", p:87500, url:SP("141707533/6438801342"), src:"Shopee" }, T.knives, ...MELT],
     opts:[], note:"" },
+  { id:"G", name:"Graphite mold", hot:false,
+    desc:"Carve a shape into a graphite block and pour silver in. The mold lasts many pours.",
+    tags:[["Reusable mold"],["No kiln"],["Simple shapes","warn"]],
+    items:[{ en:"Graphite block", vn:"tấm than chì", p:150696, url:SP("1608971472/43068671445"), src:"Shopee" }, T.file, ...MELT],
+    opts:[], note:"" },
+  { id:"S", name:"Sand casting", hot:false,
+    desc:"Press a model into packed sand, lift it out and pour silver into the hollow. Reuse the sand.",
+    tags:[["Makes copies"],["No kiln"],["Softer detail","warn"]],
+    items:[{ en:"Sand casting frame", vn:"hộp cát đúc trang sức", p:430247, url:SP("1136771861/42957003392"), src:"Shopee" },
+           { en:"Casting sand", vn:"cát đúc khuôn", p:35000, url:SP("287525368/15077041970"), src:"Shopee" }, ...MELT],
+    opts:[], note:"Ask the sand seller if it's fine enough for jewelry." },
   { id:"B", name:"Carve, then outsource", hot:false,
     desc:"Carve the wax yourself. A casting shop does the rest.",
     tags:[["Fine detail"],["Cheapest tools"],["Pay per piece","warn"]],
-    items:[["Carving wax block",83600],["Wax carving tools",217800],["Coarse files",60000],["Saw frame",155000],["Saw blades × 12",49000]],
-    opts:[["Electric wax pen",185582]], note:"Plus the shop's casting fee per piece." },
+    items:WAX_KIT,
+    opts:[T.waxpen], note:"Plus the shop's casting fee per piece." },
   { id:"C", name:"Home lost-wax", hot:true,
     desc:"The full process at home, using steam to push the silver in. The kiln also fires silver clay.",
     tags:[["Full control"],["Needs a safe space","warn"],["Learning curve","warn"]],
-    items:[["Wax carving kit",565400],["Lab kiln, 1200°C",7800000],["Steel flasks × 2",700000],["Investment plaster",435000],["Butane torch",TORCH,"torch"],["Crucible, tongs, ingot mold",269500],["Fire bricks × 10",285000],["Steam caster (homemade)",0]],
-    opts:[["Spring centrifugal caster",5146120],["Silicone + wax for copies",430000],["Electric wax pen",185582]], note:"" },
+    items:[waxKitLine,
+           { en:"Lab kiln, 1000°C", vn:"lò nung mini 1000 độ", p:7800000, url:SP("1064438619/23453289331"), src:"Shopee" },
+           T.flasks, T.invest, ...MELT,
+           { en:"Steam caster", vn:"tự làm", p:0 }],
+    opts:[{ en:"Spring centrifugal caster", vn:"máy đúc ly tâm lò xo", p:5146120, url:SP("666118087/52619477734"), src:"Shopee" },
+          { en:"Mold silicone 1 kg", vn:"silicone làm khuôn RTV", p:216000, url:SP("53880147/6451785365"), src:"Shopee" },
+          { en:"Injection wax 450 g", vn:"sáp đúc mẫu trang sức", p:170000, url:SP("967625199/24089596682"), src:"Shopee" },
+          T.waxpen], note:"" },
   { id:"D", name:"Pro workshop", hot:true,
     desc:"Production-size gear. Only makes sense with steady volume.",
     tags:[["Batch casting"],["Big upfront cost","warn"]],
-    items:[["Burnout kiln",22500000],["Steel flasks × 2",700000],["Investment plaster",435000],["Melting furnace",6900000],["Crucible",65000]],
-    opts:[["Wax carving kit",565400],["Wax injector",8366794]], note:"Vacuum caster and rubber press not included: price on request." }
+    items:[{ en:"Burnout kiln", vn:"lò nung thạch cao", p:22500000, url:SONXI.kiln, src:"Sonxi" },
+           T.flasks, T.invest,
+           { en:"Melting furnace", vn:"lò nấu kim loại", p:6900000, url:SP("40762797/8115471992"), src:"Shopee" },
+           { en:"Graphite crucible", vn:"chén nung than chì", p:138700, url:SP("1839150622/54417874740"), src:"Shopee" }],
+    opts:[waxKitLine],
+    note:"Vacuum caster (máy đúc chân không), rubber press (máy ép khuôn cao su) and wax injector (máy bơm sáp): ask the shop.",
+    noteLink:"https://dungcuthobacngochoang.com/may-duc" }
 ];
+const OWN = [["torch","butane torch"],["crucible","crucible"],["brick","fire brick"]];
+
 const steps = [
   ["Carve wax", false, "Shape the piece in hard carving wax. This is your design."],
   ["Invest", false, "Stand the wax in a steel flask and pour plaster around it."],
@@ -235,10 +291,15 @@ const steps = [
 ];
 
 const fmt = n => n.toLocaleString("en-US") + "₫";
-const state = { route:"A", ownTorch:false, opts:{} };
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const state = { route:"A", own:{}, opts:{} };
+const owned = i => i.own && state.own[i.own];
+const optKey = (r,i) => r.id + "|" + i.en;
 
-function base(r){ return r.items.reduce((s,[,p,k]) => s + (k==="torch" && state.ownTorch ? 0 : p), 0); }
-function total(r){ return base(r) + r.opts.reduce((s,[n,p]) => s + (state.opts[r.id+n] ? p : 0), 0); }
+function total(r){
+  return r.items.reduce((s,i) => s + (owned(i) ? 0 : i.p), 0)
+       + r.opts.reduce((s,i) => s + (state.opts[optKey(r,i)] ? i.p : 0), 0);
+}
 
 function buildBars(){
   const el = document.getElementById("bars");
@@ -264,7 +325,7 @@ function renderBars(){
 
 function renderSteps(){
   const ol = document.getElementById("steps");
-  steps.forEach(([t,hot,d],i) => {
+  steps.forEach(([t,hot],i) => {
     const li = document.createElement("li");
     li.className = "step" + (hot ? " hot" : "");
     li.innerHTML = `<button type="button" aria-pressed="false"><span class="t">${t}</span></button>`;
@@ -282,20 +343,30 @@ function showStep(i){
 
 function renderTabs(){
   const t = document.getElementById("tabs");
-  routes.forEach(r => {
+  routes.forEach((r, idx) => {
     const b = document.createElement("button");
     b.className = "tab"; b.id = "tab-"+r.id; b.setAttribute("role","tab");
     b.textContent = r.name;
     b.onclick = () => select(r.id);
     b.onkeydown = e => {
-      const i = routes.findIndex(x => x.id === r.id);
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-        const n = routes[(i + (e.key === "ArrowRight" ? 1 : routes.length - 1)) % routes.length];
-        select(n.id); document.getElementById("tab-"+n.id).focus();
-      }
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const n = routes[(idx + (e.key === "ArrowRight" ? 1 : routes.length - 1)) % routes.length];
+      select(n.id); document.getElementById("tab-"+n.id).focus();
     };
     t.appendChild(b);
   });
+}
+
+const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>';
+
+function row(i, extraClass){
+  const vn = i.vn === "tự làm"
+    ? `<span class="vn" style="cursor:default">tự làm</span>`
+    : `<button type="button" class="vn" data-vn="${esc(i.vn)}" aria-label="Copy ${esc(i.vn)}">${esc(i.vn)}${COPY_ICON}</button>`;
+  const right = i.goto
+    ? `<button type="button" class="goto" data-goto="${i.goto}">See list</button>`
+    : i.url ? `<a class="src" href="${i.url}" target="_blank" rel="noopener">${i.src}</a>` : "";
+  return `<li class="${extraClass||""}"><div><div class="en">${esc(i.en)}</div>${vn}</div><div class="p">${i.p===0?"Free":fmt(i.p)}${right}</div></li>`;
 }
 
 function select(id){
@@ -309,32 +380,45 @@ function select(id){
   document.getElementById("r-name").textContent = r.name;
   document.getElementById("r-desc").textContent = r.desc;
   document.getElementById("r-tags").innerHTML = r.tags.map(([t,w]) => `<span class="tag${w?" warn":""}">${t}</span>`).join("");
-  document.getElementById("r-note").textContent = r.note;
+  const note = document.getElementById("r-note");
+  note.innerHTML = r.noteLink ? `${esc(r.note)} <a class="src" style="display:inline" href="${r.noteLink}" target="_blank" rel="noopener">Ngọc Hoàng</a>` : esc(r.note);
 
   const opts = document.getElementById("r-opts");
   opts.innerHTML = "";
-  const hasTorch = r.items.some(i => i[2]==="torch");
   const addOpt = (label, price, checked, onchange) => {
     const l = document.createElement("label"); l.className = "opt";
     l.innerHTML = `<input type="checkbox" class="sr"${checked?" checked":""}><span class="box" aria-hidden="true"></span><span>${label}</span><span class="p">${price}</span>`;
     l.querySelector("input").onchange = e => { onchange(e.target.checked); update(); };
     opts.appendChild(l);
   };
-  if (hasTorch) addOpt("I already have a butane torch", "−"+fmt(TORCH), state.ownTorch, v => state.ownTorch = v);
-  r.opts.forEach(([n,p]) => addOpt("Add "+n.charAt(0).toLowerCase()+n.slice(1), "+"+fmt(p), !!state.opts[r.id+n], v => state.opts[r.id+n] = v));
+  OWN.forEach(([k,label]) => {
+    const it = r.items.find(i => i.own === k);
+    if (it) addOpt("I already have a "+label, "−"+fmt(it.p), !!state.own[k], v => state.own[k] = v);
+  });
+  r.opts.forEach(i => addOpt("Add "+i.en.charAt(0).toLowerCase()+i.en.slice(1), "+"+fmt(i.p), !!state.opts[optKey(r,i)], v => state.opts[optKey(r,i)] = v));
   update();
 }
 
 function update(){
   const r = routes.find(x => x.id === state.route);
-  document.getElementById("r-items").innerHTML = r.items.map(([n,p,k]) => {
-    const off = k==="torch" && state.ownTorch;
-    return `<li class="${off?"off":""}"><span>${n}</span><span class="p">${p===0?"Free":fmt(p)}</span></li>`;
-  }).join("") + r.opts.filter(([n]) => state.opts[r.id+n]).map(([n,p]) => `<li><span>${n}</span><span class="p">${fmt(p)}</span></li>`).join("");
-  const t = total(r);
-  document.getElementById("r-total").innerHTML = t.toLocaleString("en-US") + "<small>₫</small>";
+  const list = document.getElementById("r-items");
+  list.innerHTML = r.items.map(i => row(i, owned(i) ? "off" : "")).join("")
+    + r.opts.filter(i => state.opts[optKey(r,i)]).map(i => row(i)).join("");
+  document.getElementById("r-total").innerHTML = total(r).toLocaleString("en-US") + "<small>₫</small>";
   renderBars();
 }
+
+document.getElementById("r-items").addEventListener("click", async e => {
+  const g = e.target.closest(".goto");
+  if (g) { select(g.dataset.goto); document.getElementById("tab-"+g.dataset.goto).focus(); return; }
+  const v = e.target.closest(".vn[data-vn]");
+  if (!v) return;
+  const text = v.dataset.vn;
+  try { await navigator.clipboard.writeText(text); }
+  catch { const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+  v.classList.add("done"); v.firstChild.textContent = "Copied";
+  setTimeout(() => { v.classList.remove("done"); v.firstChild.textContent = text; }, 1200);
+});
 
 document.getElementById("copies").onchange = e => document.getElementById("branch").classList.toggle("open", e.target.checked);
 buildBars(); renderSteps(); renderTabs();
