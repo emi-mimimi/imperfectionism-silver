@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wax to Silver</title>
+<meta name="description" content="Four ways to start silver casting in Vietnam, with real start-up costs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF0F2; --paper:#F8F9FA; --ink:#1C2126; --muted:#5D6670; --line:#D3D8DD;
+  --wax:#2F7A55; --wax-soft:#DCEDE3; --hot:#D9861C; --hot-soft:#F8E6CC;
+  --radius-lg:22px; --radius-sm:10px;
+  --display:"Bricolage Grotesque", system-ui, sans-serif;
+  --body:"IBM Plex Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#161A1E; --paper:#1F2429; --ink:#E7EBEE; --muted:#9AA4AD; --line:#323940;
+    --wax:#6CC496; --wax-soft:#1F3A2C; --hot:#F0A644; --hot-soft:#3D2C14;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+main{max-width:980px;margin:0 auto;padding:56px 20px 80px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.05}
+h1{font-size:clamp(44px,8vw,88px);font-weight:800;letter-spacing:-.03em}
+h2{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-.02em;margin-bottom:24px}
+h3{font-size:22px;font-weight:600}
+p{margin:0}
+.lede{font-size:19px;color:var(--muted);margin-top:14px;max-width:46ch}
+section{margin-top:88px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--wax);outline-offset:3px;border-radius:6px}
+.money{font-family:var(--display);font-variant-numeric:tabular-nums}
+
+/* Hero cost bars */
+.bars{margin-top:44px;display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:200px 1fr;align-items:center;gap:16px;background:none;border:0;padding:6px 0;text-align:left;cursor:pointer}
+.bar .name{font-weight:500}
+.bar .track{position:relative;height:36px;border-radius:999px;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;min-width:10px;border-radius:999px;background:var(--wax);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.bar[data-hot] .fill{background:var(--hot)}
+.bar .amt{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-weight:600;font-size:17px}
+.bar .amt.on-fill{color:#1C2126}
+.bar:hover .track{border-color:var(--muted)}
+@media (max-width:620px){.bar{grid-template-columns:1fr;gap:6px}}
+
+/* Process */
+.copy-toggle{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;cursor:pointer;user-select:none;font-weight:500}
+.switch{width:44px;height:26px;border-radius:999px;background:var(--line);position:relative;transition:background .2s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--paper);transition:transform .2s}
+input.sr:checked + .switch{background:var(--wax)}
+input.sr:checked + .switch::after{transform:translateX(18px)}
+.sr{position:absolute;opacity:0;width:1px;height:1px}
+input.sr:focus-visible + .switch{outline:2px solid var(--wax);outline-offset:3px}
+
+.branch{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.branch.open{grid-template-rows:1fr}
+.branch > div{overflow:hidden}
+.branch-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:0 0 18px}
+.chip{border:1.5px dashed var(--wax);color:var(--wax);border-radius:999px;padding:8px 16px;font-weight:500;background:var(--wax-soft)}
+.branch-row .arrow{color:var(--muted)}
+.branch-note{color:var(--muted);font-size:15px;width:100%}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;counter-reset:s}
+.step{counter-increment:s}
+.step button{width:100%;height:100%;min-height:118px;text-align:left;border:1px solid var(--line);background:var(--paper);border-radius:var(--radius-sm);padding:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;gap:12px;transition:border-color .2s,background .2s}
+.step button::before{content:counter(s);font-family:var(--display);font-size:28px;font-weight:800;line-height:1;color:var(--wax)}
+.step.hot button::before{color:var(--hot)}
+.step .t{font-weight:500;line-height:1.25}
+.step button[aria-pressed="true"]{border-color:var(--wax);background:var(--wax-soft)}
+.step.hot button[aria-pressed="true"]{border-color:var(--hot);background:var(--hot-soft)}
+.step-detail{margin-top:14px;min-height:56px;padding:16px 20px;border-radius:var(--radius-sm);background:var(--paper);border-left:4px solid var(--wax);font-size:17px}
+.step-detail.hot{border-left-color:var(--hot)}
+.legend{display:flex;gap:20px;margin-top:14px;color:var(--muted);font-size:14px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:7px;background:var(--wax);vertical-align:0}
+.legend span.h::before{background:var(--hot)}
+@media (max-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:440px){.steps{grid-template-columns:repeat(2,1fr)}}
+
+/* Routes */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tab{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:10px 18px;cursor:pointer;font-weight:500}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px;display:grid;grid-template-columns:1.25fr 1fr;gap:36px}
+.panel .desc{color:var(--muted);margin-top:8px;font-size:17px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tag{font-size:14px;padding:3px 10px;border-radius:999px;background:var(--wax-soft);color:var(--wax)}
+.tag.warn{background:var(--hot-soft);color:var(--hot)}
+.items{list-style:none;padding:0;margin:24px 0 0}
+.items li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--line)}
+.items li.off{color:var(--muted);text-decoration:line-through}
+.items .p{white-space:nowrap;font-variant-numeric:tabular-nums}
+.total-box{align-self:start;position:sticky;top:20px}
+.total-label{color:var(--muted);font-size:15px}
+.total{font-size:clamp(40px,6vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1;margin:6px 0 4px}
+.total small{font-size:.4em;font-weight:600;letter-spacing:0}
+.extra-note{color:var(--muted);font-size:14px;margin-top:8px}
+.opts{margin-top:24px;display:grid;gap:10px}
+.opt{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.box{width:22px;height:22px;border-radius:6px;border:1.5px solid var(--muted);flex:none;display:grid;place-items:center;transition:background .15s,border-color .15s}
+input.sr:checked + .box{background:var(--wax);border-color:var(--wax)}
+input.sr:checked + .box::after{content:"";width:6px;height:11px;border:solid var(--paper);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+input.sr:focus-visible + .box{outline:2px solid var(--wax);outline-offset:3px}
+.opt .p{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:760px){.panel{grid-template-columns:1fr;padding:22px}.total-box{position:static}}
+
+/* Answers */
+.qa{display:grid;gap:10px}
+details{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-sm);padding:0 20px}
+summary{cursor:pointer;list-style:none;padding:18px 0;font-weight:500;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:24px;line-height:1;color:var(--muted);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 18px;color:var(--muted);max-width:68ch}
+
+footer{margin-top:88px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px;display:grid;gap:8px}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Wax to silver</h1>
+  <p class="lede">Four ways to start casting silver jewelry in Vietnam, and what each costs to set up.</p>
+  <div class="bars" id="bars" aria-label="Start-up cost by route"></div>
+</header>
+
+<section aria-labelledby="h-process">
+  <h2 id="h-process">How casting works</h2>
+  <label class="copy-toggle">
+    <input type="checkbox" class="sr" id="copies">
+    <span class="switch" aria-hidden="true"></span>
+    Making copies of one design
+  </label>
+  <div class="branch" id="branch">
+    <div>
+      <div class="branch-row">
+        <span class="chip">Finished silver piece</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="chip">Rubber mold</span><span class="arrow" aria-hidden="true">→</span>
+        <span class="chip">Identical waxes</span><span class="arrow" aria-hidden="true">→ step 2</span>
+        <p class="branch-note">The rubber mold only ever holds wax. Silver never touches it.</p>
+      </div>
+    </div>
+  </div>
+  <ol class="steps" id="steps"></ol>
+  <p class="step-detail" id="step-detail" aria-live="polite"></p>
+  <div class="legend"><span>Cold</span><span class="h">Hot</span></div>
+</section>
+
+<section aria-labelledby="h-routes">
+  <h2 id="h-routes">Pick a route</h2>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" role="tabpanel" id="panel" aria-labelledby="">
+    <div>
+      <h3 id="r-name"></h3>
+      <p class="desc" id="r-desc"></p>
+      <div class="tags" id="r-tags"></div>
+      <ul class="items" id="r-items"></ul>
+    </div>
+    <div class="total-box">
+      <p class="total-label">To start</p>
+      <p class="total money" id="r-total"></p>
+      <p class="extra-note" id="r-note"></p>
+      <div class="opts" id="r-opts"></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-qa">
+  <h2 id="h-qa">Quick answers</h2>
+  <div class="qa">
+    <details>
+      <summary>Won't hot silver burn a rubber mold?</summary>
+      <p>Silver goes into a plaster mold that is fired in a kiln and broken off afterwards. Rubber molds are only for making wax copies.</p>
+    </details>
+    <details>
+      <summary>Can a microwave kiln do the job?</summary>
+      <p>No. The chamber is about 8 × 4.5 cm, it tops out near 900°C and has no temperature control. A flask won't fit, and sterling needs to be poured hotter than that.</p>
+    </details>
+    <details>
+      <summary>Do I need a melting furnace?</summary>
+      <p>No. A gas torch melts small amounts: a butane torch handles about 10–15 g, a gasoline torch with blow pipe more. A furnace only helps with bigger, repeat melts.</p>
+    </details>
+    <details>
+      <summary>Will casting shops take tiny orders?</summary>
+      <p>Some do. Many add a few customer waxes to the tree they're already casting that day. Ask about minimum order, price per gram, metal loss and mold fee.</p>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <p>Prices from Shopee and HCMC jewelry-tool shops, October 2026. Silver itself, flux, pickle and safety gear are not included. 925 silver ≈ 52,600₫/g.</p>
+  <p>Sources: <a href="https://giabac.ancarat.com/">Ancarat</a>, <a href="https://sonxitools.com/">Sonxi</a>, <a href="https://dungcuthobacngochoang.com/cong-nghe-duc">Ngọc Hoàng</a>, <a href="https://glosbejewelry.net/chuyen-gia-cong-trang-suc-bac-gia-re">Glosbe &amp; Co</a>, <a href="https://shopee.vn/">Shopee</a>.</p>
+</footer>
+</main>
+
+<script>
+const TORCH = 213000;
+const routes = [
+  { id:"A", name:"Cuttlefish bone", hot:false,
+    desc:"Carve the shape straight into a cuttlebone and pour silver in. No wax, no kiln.",
+    tags:[["Textured one-offs"],["Under 1M₫"],["Low detail","warn"]],
+    items:[["Cuttlefish bones × 5",87500],["Small carving set",29900],["Butane torch",TORCH,"torch"],["Crucible, tongs, ingot mold",269500],["Fire bricks × 10",285000]],
+    opts:[], note:"" },
+  { id:"B", name:"Carve, then outsource", hot:false,
+    desc:"Carve the wax yourself. A casting shop does the rest.",
+    tags:[["Fine detail"],["Cheapest tools"],["Pay per piece","warn"]],
+    items:[["Carving wax block",83600],["Wax carving tools",217800],["Coarse files",60000],["Saw frame",155000],["Saw blades × 12",49000]],
+    opts:[["Electric wax pen",185582]], note:"Plus the shop's casting fee per piece." },
+  { id:"C", name:"Home lost-wax", hot:true,
+    desc:"The full process at home, using steam to push the silver in. The kiln also fires silver clay.",
+    tags:[["Full control"],["Needs a safe space","warn"],["Learning curve","warn"]],
+    items:[["Wax carving kit",565400],["Lab kiln, 1200°C",7800000],["Steel flasks × 2",700000],["Investment plaster",435000],["Butane torch",TORCH,"torch"],["Crucible, tongs, ingot mold",269500],["Fire bricks × 10",285000],["Steam caster (homemade)",0]],
+    opts:[["Spring centrifugal caster",5146120],["Silicone + wax for copies",430000],["Electric wax pen",185582]], note:"" },
+  { id:"D", name:"Pro workshop", hot:true,
+    desc:"Production-size gear. Only makes sense with steady volume.",
+    tags:[["Batch casting"],["Big upfront cost","warn"]],
+    items:[["Burnout kiln",22500000],["Steel flasks × 2",700000],["Investment plaster",435000],["Melting furnace",6900000],["Crucible",65000]],
+    opts:[["Wax carving kit",565400],["Wax injector",8366794]], note:"Vacuum caster and rubber press not included: price on request." }
+];
+const steps = [
+  ["Carve wax", false, "Shape the piece in hard carving wax. This is your design."],
+  ["Invest", false, "Stand the wax in a steel flask and pour plaster around it."],
+  ["Burn out", true, "Heat slowly to about 730°C. The wax melts away and leaves a hollow."],
+  ["Cast", true, "Pour melted silver into the hollow, pushed in by steam, spin or vacuum."],
+  ["Break out", false, "Quench in water. The plaster crumbles off and can't be reused."],
+  ["Finish", false, "Cut off the sprue, file, sand and polish."]
+];
+
+const fmt = n => n.toLocaleString("en-US") + "₫";
+const state = { route:"A", ownTorch:false, opts:{} };
+
+function base(r){ return r.items.reduce((s,[,p,k]) => s + (k==="torch" && state.ownTorch ? 0 : p), 0); }
+function total(r){ return base(r) + r.opts.reduce((s,[n,p]) => s + (state.opts[r.id+n] ? p : 0), 0); }
+
+function buildBars(){
+  const el = document.getElementById("bars");
+  routes.forEach(r => {
+    const b = document.createElement("button");
+    b.className = "bar"; b.id = "bar-"+r.id; if (r.hot) b.dataset.hot = "";
+    b.innerHTML = `<span class="name">${r.name}</span><span class="track"><span class="fill" style="width:0"></span><span class="amt money"></span></span>`;
+    b.onclick = () => { select(r.id); document.getElementById("h-routes").scrollIntoView(); };
+    el.appendChild(b);
+  });
+}
+function renderBars(){
+  const max = Math.max(...routes.map(total));
+  routes.forEach(r => {
+    const b = document.getElementById("bar-"+r.id), pct = total(r)/max*100;
+    b.setAttribute("aria-label", `${r.name}: ${fmt(total(r))}. Show details`);
+    b.querySelector(".fill").style.width = pct.toFixed(2)+"%";
+    const a = b.querySelector(".amt");
+    a.textContent = fmt(total(r));
+    a.classList.toggle("on-fill", pct > 85);
+  });
+}
+
+function renderSteps(){
+  const ol = document.getElementById("steps");
+  steps.forEach(([t,hot,d],i) => {
+    const li = document.createElement("li");
+    li.className = "step" + (hot ? " hot" : "");
+    li.innerHTML = `<button type="button" aria-pressed="false"><span class="t">${t}</span></button>`;
+    li.querySelector("button").onclick = () => showStep(i);
+    ol.appendChild(li);
+  });
+  showStep(0);
+}
+function showStep(i){
+  document.querySelectorAll(".step button").forEach((b,j) => b.setAttribute("aria-pressed", j===i));
+  const d = document.getElementById("step-detail");
+  d.textContent = steps[i][2];
+  d.classList.toggle("hot", steps[i][1]);
+}
+
+function renderTabs(){
+  const t = document.getElementById("tabs");
+  routes.forEach(r => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.id = "tab-"+r.id; b.setAttribute("role","tab");
+    b.textContent = r.name;
+    b.onclick = () => select(r.id);
+    b.onkeydown = e => {
+      const i = routes.findIndex(x => x.id === r.id);
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        const n = routes[(i + (e.key === "ArrowRight" ? 1 : routes.length - 1)) % routes.length];
+        select(n.id); document.getElementById("tab-"+n.id).focus();
+      }
+    };
+    t.appendChild(b);
+  });
+}
+
+function select(id){
+  state.route = id;
+  const r = routes.find(x => x.id === id);
+  routes.forEach(x => {
+    const b = document.getElementById("tab-"+x.id);
+    b.setAttribute("aria-selected", x.id===id); b.tabIndex = x.id===id ? 0 : -1;
+  });
+  document.getElementById("panel").setAttribute("aria-labelledby","tab-"+id);
+  document.getElementById("r-name").textContent = r.name;
+  document.getElementById("r-desc").textContent = r.desc;
+  document.getElementById("r-tags").innerHTML = r.tags.map(([t,w]) => `<span class="tag${w?" warn":""}">${t}</span>`).join("");
+  document.getElementById("r-note").textContent = r.note;
+
+  const opts = document.getElementById("r-opts");
+  opts.innerHTML = "";
+  const hasTorch = r.items.some(i => i[2]==="torch");
+  const addOpt = (label, price, checked, onchange) => {
+    const l = document.createElement("label"); l.className = "opt";
+    l.innerHTML = `<input type="checkbox" class="sr"${checked?" checked":""}><span class="box" aria-hidden="true"></span><span>${label}</span><span class="p">${price}</span>`;
+    l.querySelector("input").onchange = e => { onchange(e.target.checked); update(); };
+    opts.appendChild(l);
+  };
+  if (hasTorch) addOpt("I already have a butane torch", "−"+fmt(TORCH), state.ownTorch, v => state.ownTorch = v);
+  r.opts.forEach(([n,p]) => addOpt("Add "+n.charAt(0).toLowerCase()+n.slice(1), "+"+fmt(p), !!state.opts[r.id+n], v => state.opts[r.id+n] = v));
+  update();
+}
+
+function update(){
+  const r = routes.find(x => x.id === state.route);
+  document.getElementById("r-items").innerHTML = r.items.map(([n,p,k]) => {
+    const off = k==="torch" && state.ownTorch;
+    return `<li class="${off?"off":""}"><span>${n}</span><span class="p">${p===0?"Free":fmt(p)}</span></li>`;
+  }).join("") + r.opts.filter(([n]) => state.opts[r.id+n]).map(([n,p]) => `<li><span>${n}</span><span class="p">${fmt(p)}</span></li>`).join("");
+  const t = total(r);
+  document.getElementById("r-total").innerHTML = t.toLocaleString("en-US") + "<small>₫</small>";
+  renderBars();
+}
+
+document.getElementById("copies").onchange = e => document.getElementById("branch").classList.toggle("open", e.target.checked);
+buildBars(); renderSteps(); renderTabs();
+requestAnimationFrame(() => requestAnimationFrame(() => select("A")));
+</script>
+</body>
+</html>
